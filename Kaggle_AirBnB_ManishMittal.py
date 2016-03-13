@@ -37,7 +37,7 @@ ignore = ['id','country_destination']
 ### Data cleanup for the train_users file
 print('Starting data cleanup ......')
 dfclean = dfclean.drop('date_first_booking',1)
-# age submodule. encode missing and obviously wrong age with number 1
+# age submodule: encode missing and obviously wrong age with number 1
 dfclean.loc[(dfclean['age']>100) | (dfclean['age']<14),'age'] = 1
 dfclean.loc[dfclean['age'].isnull() ,'age'] = 1
 dfclean['age_bins'] = np.ceil(dfclean['age']/10) # bin age in sets of 10
@@ -232,7 +232,7 @@ for colname in collist:
     train_X = train_X.drop(colname,axis=1)
     test_X = test_X.drop(colname,axis=1)
 
-### Train three models: Booking vs NDF, US vs non-US, country classsfication
+### Train two models: Booking vs NDF, country classsfication
 train_Y_save = train_Y.copy() # save a copy for future
 test_Y_save = test_Y.copy() # save a copy for future
 
